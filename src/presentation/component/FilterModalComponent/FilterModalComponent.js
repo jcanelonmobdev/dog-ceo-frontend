@@ -3,9 +3,6 @@ import Modal from 'react-bootstrap/Modal';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 
-
-
-
 const FilterModalComponent = ({ showModal, onHideModal}) => {
     return (
         <>
@@ -22,7 +19,6 @@ const FilterModalComponent = ({ showModal, onHideModal}) => {
 
                 <Form>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Select a breed</Form.Label>
                         <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                 Select a breed
