@@ -8,6 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Col from 'react-bootstrap/Col';
 import { Row } from 'react-bootstrap';
+import ImageBreedComponent from '../ImageBreedComponent/ImageBreedComponent';
 
 
 const ImagesComponent = () => {
@@ -16,8 +17,14 @@ const ImagesComponent = () => {
             <Card className="col-lg-12 col-12">
                     <Card.Body>
                         <Card.Title>Images of selected breeds</Card.Title>
-                        
-                        <Card>
+                            <ImageBreedComponent
+                                breed = "Bulldog"
+                                subBreeds = {['Boston', 'French']} 
+                            />
+ 
+                              
+
+                        {/* <Card>
                             <Card.Header as="h5">Bulldog</Card.Header>
                             
                             <ListGroup>
@@ -27,7 +34,6 @@ const ImagesComponent = () => {
                                     <Row  xs={12} md={12}>
                                         <Col xs={2} md={2}>
                                             <Card.Text>
-                                          
                                                 <Image 
                                                 src="https://images.dog.ceo/breeds/bulldog-boston/20200710_175933.jpg" thumbnail rounded/>
                                             </Card.Text>
@@ -142,10 +148,10 @@ const ImagesComponent = () => {
                                     </Row>
                                 </ListGroup.Item>
                             </ListGroup>
-                        </Card> 
+                        </Card>  */}
                         {/* Raza */}
 
-                        <Card>
+                        {/* <Card>
                             <Card.Header as="h5">Hound</Card.Header>
                             
                             <ListGroup>
@@ -308,7 +314,7 @@ const ImagesComponent = () => {
                                     </Row>
                                 </ListGroup.Item>
                             </ListGroup>
-                        </Card> 
+                        </Card>  */}
                         {/* Raza */}
 
                     </Card.Body>
