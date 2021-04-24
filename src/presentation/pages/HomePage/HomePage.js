@@ -11,33 +11,23 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
         const handleUpdateShow = (value) => setShow(value);
 
         const breedUseCase = new BreedUseCase();
-        const [listBreeds, setListBreeds] = React.useState(
-            []
-        );
+        
+        const [listBreeds, setListBreeds] = React.useState('');
 
         const InitializateAll = async () => {
             
             setShow(false);
-            
-            //const data = await breedUseCase.list();
             const data = await breedUseCase.getListAll();
-            console.log(data);
-            // setListBreeds(
-            //     data.map(
-            //         element => {
-            //             return { ...element, selected: false }
-            //         }
-            //     )
-            // );
-            // console.log(listBreeds);
-        }
 
+            setListBreeds(
+                data
+            );
+        }
 
         React.useEffect(() => {
             InitializateAll();
+          }, []);
 
-            }, []
-        ); //end useEffect
 
         return (
             <Container className="p-3">
