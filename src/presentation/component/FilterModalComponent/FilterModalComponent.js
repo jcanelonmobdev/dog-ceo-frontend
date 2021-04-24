@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 
 const FilterModalComponent = ({ showModal, onHideModal, breeds }) => {
     return (
@@ -10,6 +10,8 @@ const FilterModalComponent = ({ showModal, onHideModal, breeds }) => {
                 onHide={() => onHideModal()}
                 backdrop="static"
                 keyboard={false}
+                dialogClassName="modal-70w"
+                aria-labelledby="example-custom-modal-styling-title"
             >
                
                 <Modal.Header closeButton>
@@ -18,36 +20,35 @@ const FilterModalComponent = ({ showModal, onHideModal, breeds }) => {
                 <Modal.Body>
 
                     <Form>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Control as="select" htmlSize={6} custom>
-                            {
-                                breeds.map((e, idx) => 
-                                    <option key={idx}>{e.breed}</option>
-                                )
-                            }
-                            </Form.Control>
-
-                            <Form.Text className="text-muted">
-                                Then you can select one or all subreeds
-                            </Form.Text>
-                        </Form.Group>
-
-                        <Form.Group controlId="formBasicCheckbox">
-                            <Form.Label>Select a subbreed</Form.Label>
-                            <Form.Check type="checkbox" label="Check me out" />                       
-                            <Form.Check type="checkbox" label="Check me out" />
-                            <Form.Check type="checkbox" label="Check me out" />
-                            <Form.Check type="checkbox" label="Check me out" />
-                            <Form.Check type="checkbox" label="Check me out" />
-                        </Form.Group>
+                        <Row  xs={12} md={12}> 
+                            <Col xs={4} md={4}>
+                                <Form.Group controlId="formBreeds">
+                                    <Form.Label>Select breed</Form.Label>
+                                    <Form.Control as="select" htmlSize={10} custom>
+                                    {
+                                        breeds.map((e, idx) => 
+                                            <option key={idx}>{e.breed}</option>
+                                        )
+                                    }
+                                    </Form.Control>
+                                    <Form.Text className="text-muted">
+                                        Then you can select one or all subreeds
+                                    </Form.Text>
+                                </Form.Group>
+                            </Col>
+                            <Col xs={8} md={8}>
+                                <Form.Group controlId="formSubbreeds">
+                                    <Form.Label>Select subbreed</Form.Label>
+                                    <Form.Check type="checkbox" label="Check me out" />                       
+                                    <Form.Check type="checkbox" label="Check me out" />
+                                    <Form.Check type="checkbox" label="Check me out" />
+                                    <Form.Check type="checkbox" label="Check me out" />
+                                    <Form.Check type="checkbox" label="Check me out" />
+                                </Form.Group>
+                            </Col>
+                        </Row>
                     </Form>
-                
                 </Modal.Body>
-                <hr/>
-                <Modal.Body>
-                    Seleccione las Razas y Subrazas a filtrar.
-                </Modal.Body>
-                <br/>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => onHideModal()}>
                     Close

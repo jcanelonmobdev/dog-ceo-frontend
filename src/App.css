@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.modal-90w {
+  width: 90%;
+  max-width: none !important;
+}
+
+.modal-80w {
+  width: 80%;
+  max-width: none !important;
+}
+
+.modal-70w {
+  width: 70%;
+  max-width: none !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
