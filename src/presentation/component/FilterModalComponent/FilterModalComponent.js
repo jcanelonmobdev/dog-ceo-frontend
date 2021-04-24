@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 
-const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed  }) => {
+const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, onChangeSubBreed  }) => {
 
     const [breedSelected, setBreedSelected] = React.useState(-1);
 
@@ -47,17 +47,22 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed  }
                                                 <>
                                                     {/* si no tiene subrazas */}
                                                     <Form.Check 
-                                                        type="checkbox" 
-                                                        onChange={(ev) => onChangeBreed(e.id, ev.target.checked)}
-                                                        label={e.breed} 
-                                                        checked={e.selected} />
+                                                        type = "checkbox" 
+                                                        onChange = {(ev) => onChangeBreed(e.id, ev.target.checked)}
+                                                        label = {e.breed} 
+                                                        checked = {e.selected} />
                                                 </> :
                                                 <>
                                                     {/* si tiene subrazas */}
                                                     <Form.Check type="checkbox" label="select all subreeds" />
                                                     {
                                                         e.subbreeds.map(sb =>
-                                                            <Form.Check id={sb.id} type="checkbox" label={sb.name} checked={sb.selected}  />
+                                                            <Form.Check 
+                                                                id = {sb.id} 
+                                                                type = "checkbox" 
+                                                                onChange = { (ev) => onChangeSubBreed(e.id, sb.id, ev.target.checked) }
+                                                                label = {sb.name} 
+                                                                checked={sb.selected}  />
                                                         )     
                                                     }
 
