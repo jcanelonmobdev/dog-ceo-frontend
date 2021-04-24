@@ -26,10 +26,11 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
             setListBreeds(
                 data.map(
                     element => {
-                        return { ...element, error: "", inputValue: "" }
+                        return { ...element }
                     }
-                )
+                ) 
             );
+            console.log(listBreeds);
         }
 
         // .. 
