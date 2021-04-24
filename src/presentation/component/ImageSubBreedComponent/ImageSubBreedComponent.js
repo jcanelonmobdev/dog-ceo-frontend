@@ -7,8 +7,8 @@ const ImageSubBreedComponent = ({ subBreed, images }) => {
         <React.Fragment>
         {
             <ListGroup.Item>
-                <Card.Text> { subBreed } </Card.Text>{ console.log(images)}
-                <Row  xs={12} md={12}>
+                <Card.Text> { subBreed } </Card.Text>
+                <Row  xs={12} md={12}> 
                 {
                     images.map((source, idx) => 
                         <Col key={ idx } xs={2} md={2}>
