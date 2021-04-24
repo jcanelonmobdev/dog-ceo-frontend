@@ -14,8 +14,21 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
         // caso de uso
         const breedUseCase = new BreedUseCase();
         
-        // hook de datos
+        // manejo de datos de razas y subrazas
         const [listBreeds, setListBreeds] = React.useState([]);
+        
+        const hadleUpdateBreeds = (arr, id, value) => {
+            const newList = arr.map(element => {
+                if (element.id === id)
+                    return { ...element, selected: value }
+                else
+                    return element;
+            });
+            setListBreeds(newList);
+        }
+
+
+
 
         // inicializador de datos
         const InitializateAll = async () => {
@@ -56,9 +69,10 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                             </Button>
                          
                             <FilterModalComponent
+                                breeds = {listBreeds}
                                 showModal = {show}
                                 onHideModal = {() => handleUpdateShow(false)}
-                                breeds = {listBreeds}
+                                onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status)}
                             />
                         </Card.Body>
                     </Card>

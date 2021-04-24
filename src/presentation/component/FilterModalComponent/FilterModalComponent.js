@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 
-const FilterModalComponent = ({ showModal, onHideModal, breeds }) => {
+const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed  }) => {
 
     const [breedSelected, setBreedSelected] = React.useState(-1);
 
@@ -41,12 +41,19 @@ const FilterModalComponent = ({ showModal, onHideModal, breeds }) => {
                                 <Form.Group controlId="formSubbreeds">
                                     <Form.Label>Select subbreed</Form.Label>
                                     {
-                                        breeds.filter(i => i.id === breedSelected).map((e, idx) => {
+                                        breeds.filter(b => b.id === breedSelected).map((e, idx) => {
+                                            
                                             return (e.subbreeds.length === 0 ? 
                                                 <>
-                                                    <Form.Check type="checkbox" label={e.breed} checked={e.selected} />
+                                                    {/* si no tiene subrazas */}
+                                                    <Form.Check 
+                                                        type="checkbox" 
+                                                        onChange={(ev) => onChangeBreed(e.id, ev.target.checked)}
+                                                        label={e.breed} 
+                                                        checked={e.selected} />
                                                 </> :
                                                 <>
+                                                    {/* si tiene subrazas */}
                                                     <Form.Check type="checkbox" label="select all subreeds" />
                                                     {
                                                         e.subbreeds.map(sb =>
