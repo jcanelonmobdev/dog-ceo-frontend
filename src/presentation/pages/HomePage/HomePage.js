@@ -3,6 +3,7 @@ import BreedUseCase from '../../../domain/usecase/BreedUseCase'
 import FilterModalComponent from '../../component/FilterModalComponent'
 import ImageBreedComponent from '../../component/ImageBreedComponent'
 import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
+import { findAllByDisplayValue } from '@testing-library/react';
 
 
     const HomePage = () => {
@@ -27,6 +28,22 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
             setListBreeds(newList);
         }
 
+        const verifyIfAllSubBreedsAreSelected = (list, id) => {
+            
+            let verify = true;
+            
+            list.map(element => {
+                if (element.id === id) {
+
+                    element.subbreeds.map(sb => {
+                        if (!sb.selected)
+                            verify = false;
+                    });
+                }
+            })
+            return verify;
+        }
+
         const hadleUpdateSubBreeds = (arr, idBreed, id, value) => {
             
             const newList = arr.map(element => {
@@ -36,7 +53,6 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
 
                         if (sb.id === id)
                         {
-                            console.log(sb.name);
                             return { ...sb, selected: value}
                         }
                         else
@@ -47,6 +63,9 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                 return element;
             });
             setListBreeds(newList)
+            
+            const v = verifyIfAllSubBreedsAreSelected(newList, idBreed);
+            console.log(v);
         }
 
         // inicializador de datos
@@ -91,7 +110,8 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                                 showModal = { show }
                                 onHideModal = {() => handleUpdateShow(false) }
                                 onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
-                                onChangeSubBreed = { (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
+                                onChangeSubBreed = { 
+                                    (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
                             />
                         </Card.Body>
                     </Card>

@@ -70,13 +70,6 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                                             )
                                         })
                                     }
-
-                                    
-                                    {/* <Form.Check type="checkbox" label="Check me out" />                       
-                                    <Form.Check type="checkbox" label="Check me out" />
-                                    <Form.Check type="checkbox" label="Check me out" />
-                                    <Form.Check type="checkbox" label="Check me out" />
-                                    <Form.Check type="checkbox" label="Check me out" /> */}
                                 </Form.Group>
                             </Col>
                         </Row>
