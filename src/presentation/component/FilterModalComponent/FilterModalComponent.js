@@ -28,7 +28,7 @@ const FilterModalComponent = ({ showModal, onHideModal, breeds }) => {
                                     <Form.Control as="select" htmlSize={10} custom>
                                     {
                                         breeds.map((e, idx) => 
-                                            <option key={idx} onClick={ () => setBreedSelected(e.id)}>{e.breed}</option>
+                                            <option key={idx} onClick={ () => setBreedSelected(e.id)}>{e.breed}, {e.subbreeds.length}</option>
                                         )
                                     }
                                     </Form.Control>
@@ -41,9 +41,22 @@ const FilterModalComponent = ({ showModal, onHideModal, breeds }) => {
                                 <Form.Group controlId="formSubbreeds">
                                     <Form.Label>Select subbreed</Form.Label>
                                     {
-                                        breeds.filter(i => i.id === breedSelected).map((e, idx) => 
-                                            <Form.Check type="checkbox" label={e.breed} />       
-                                        )
+                                        breeds.filter(i => i.id === breedSelected).map((e, idx) => {
+                                            return (e.subbreeds.length === 0 ? 
+                                                <>
+                                                    <Form.Check type="checkbox" label={e.breed} checked={e.selected} />
+                                                </> :
+                                                <>
+                                                    <Form.Check type="checkbox" label="select all subreeds" />
+                                                    {
+                                                        e.subbreeds.map(sb =>
+                                                            <Form.Check id={sb.id} type="checkbox" label={sb.name} checked={sb.selected}  />
+                                                        )     
+                                                    }
+
+                                                </>
+                                            )
+                                        })
                                     }
 
                                     

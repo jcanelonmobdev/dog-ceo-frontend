@@ -14,12 +14,12 @@ export default class BreedUseCase extends Services {
                 return {
                     id: idx,
                     breed: element[0],
-                    selected: false,
+                    selected: true,
                     subbreeds: element[1].map((e, idz) => {
                         return {
                             id: idz,
-                            subbreed: e,
-                            selected: false
+                            name: e,
+                            selected: true
                         }
                     })
                 }
