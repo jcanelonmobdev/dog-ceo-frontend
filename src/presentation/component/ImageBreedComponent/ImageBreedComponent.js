@@ -1,13 +1,5 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import FilterModalComponent from '../../component/FilterModalComponent'
-import Button from 'react-bootstrap/Button';
-import Figure from 'react-bootstrap/Figure';
-import Image from 'react-bootstrap/Image';
-import Alert from 'react-bootstrap/Alert';
-import ListGroup from 'react-bootstrap/ListGroup';
-import { Row, Col } from 'react-bootstrap';
+import { ListGroup , Card } from 'react-bootstrap';
 import ImageSubBreedComponent from '../ImageSubBreedComponent/ImageSubBreedComponent'
 
 
@@ -18,16 +10,23 @@ const ImageBreedComponent = ({ breed, subBreeds  }) => {
             <Card>
                 <Card.Header as="h5">{ breed }</Card.Header>
                 <ListGroup>
-                    {
-                        subBreeds.map((name, idx) =>
-                        
-                            <ImageSubBreedComponent
-                                key = { idx }
-                                subBreed = { name }
-                            />
-
-                        )
-                    }
+                {
+                    subBreeds.map((name, idx) =>
+                    
+                        <ImageSubBreedComponent
+                            key = { idx }
+                            subBreed = { name }
+                            images = {[
+                                "https://images.dog.ceo/breeds/bulldog-boston/20200710_175933.jpg",
+                                "https://images.dog.ceo/breeds/bulldog-boston/20200710_175944.jpg",
+                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10380.jpg",
+                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10452.jpg",
+                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10596.jpg",
+                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10604.jpg",
+                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_1069.jpg"] }
+                        />
+                    )
+                }
                 </ListGroup>
             </Card>
         }

@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 import FilterModalComponent from '../../component/FilterModalComponent'
-import Button from 'react-bootstrap/Button';
-import Figure from 'react-bootstrap/Figure';
-import Image from 'react-bootstrap/Image';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Col from 'react-bootstrap/Col';
 import ImagesComponent from '../../component/ImagesComponent'
+import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
 
 
   const HomePage = () => {
@@ -21,7 +14,6 @@ import ImagesComponent from '../../component/ImagesComponent'
         //InitializateAll();
         setShow(false);
 
-        // logica para cargar una cotizacion
     }, []); //end useEffect
 
     return (
@@ -36,16 +28,26 @@ import ImagesComponent from '../../component/ImagesComponent'
                              You can filter by breeds and / or subbreeds
                         </Card.Text>
                         <Button variant="primary" onClick={() => handleUpdateShow(true)}>
-                    Select your Filters
-                </Button>
-                <FilterModalComponent
-                    showModal = {show}
-                    onHideModal = {() => handleUpdateShow(false)}
-                />
+                            Select your Filters
+                        </Button>
+                        <FilterModalComponent
+                            showModal = {show}
+                            onHideModal = {() => handleUpdateShow(false)}
+                        />
                     </Card.Body>
                 </Card>
-                <ImagesComponent>
-                </ImagesComponent>
+
+                {/* aqui va la iteracion de las razas a dibujar */}
+                <ImagesComponent
+                    breed = "Bulldog"
+                    subBreeds = {['Boston', 'French']} 
+                    // los subbreeds van con sus imagenes
+                />
+                <ImagesComponent
+                    breed = "Raza 2"
+                    subBreeds = {['SubRaza2.1', 'SubRaza2.2', "SubRaza2.3"]} 
+                    // los subbreeds van con sus imagenes
+                />
             </Jumbotron>
         </Container>
     ); 
