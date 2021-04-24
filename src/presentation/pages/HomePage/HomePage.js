@@ -7,28 +7,38 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
 
     const HomePage = () => {
 
+        // manejo del estado del Modal de filtros 
         const [show, setShow] = useState(false);
         const handleUpdateShow = (value) => setShow(value);
 
+        // caso de uso
         const breedUseCase = new BreedUseCase();
         
-        const [listBreeds, setListBreeds] = React.useState('');
+        // hook de datos
+        const [listBreeds, setListBreeds] = React.useState([]);
 
+        // inicializador de datos
         const InitializateAll = async () => {
             
             setShow(false);
             const data = await breedUseCase.getListAll();
 
             setListBreeds(
-                data
+                data.map(
+                    element => {
+                        return { ...element, error: "", inputValue: "" }
+                    }
+                )
             );
         }
 
+        // .. 
         React.useEffect(() => {
             InitializateAll();
           }, []);
 
 
+        // ..
         return (
             <Container className="p-3">
                 <Jumbotron>
@@ -37,15 +47,17 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                 <Card className="col-lg-12 col-12">
                         <Card.Body>
                             <Card.Title>Breed Filters</Card.Title>
-                            <Card.Text>
+                            <Card.Text> 
                                 You can filter by breeds and / or subbreeds
                             </Card.Text>
                             <Button variant="primary" onClick={() => handleUpdateShow(true)}>
                                 Select your Filters
                             </Button>
+                         
                             <FilterModalComponent
                                 showModal = {show}
                                 onHideModal = {() => handleUpdateShow(false)}
+                                breeds = {listBreeds}
                             />
                         </Card.Body>
                     </Card>
