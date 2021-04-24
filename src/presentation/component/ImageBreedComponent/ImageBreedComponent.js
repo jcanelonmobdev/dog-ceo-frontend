@@ -6,28 +6,33 @@ import ImageSubBreedComponent from '../ImageSubBreedComponent/ImageSubBreedCompo
 const ImageBreedComponent = ({ breed, subBreeds  }) => {
     return (
         <React.Fragment>
-        {
-            <Card>
-                <Card.Header as="h5">{ breed }</Card.Header>
-                <ListGroup>
-                {
-                    subBreeds.map((name, idx) =>
+        {   
+            <Card className="col-lg-12 col-12">
+                <Card.Body>
                     
-                        <ImageSubBreedComponent
-                            key = { idx }
-                            subBreed = { name }
-                            images = {[
-                                "https://images.dog.ceo/breeds/bulldog-boston/20200710_175933.jpg",
-                                "https://images.dog.ceo/breeds/bulldog-boston/20200710_175944.jpg",
-                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10380.jpg",
-                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10452.jpg",
-                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10596.jpg",
-                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10604.jpg",
-                                "https://images.dog.ceo/breeds/bulldog-boston/n02096585_1069.jpg"] }
-                        />
-                    )
-                }
-                </ListGroup>
+                    <Card>
+                        <Card.Header as="h5">{ breed }</Card.Header>
+                        <ListGroup>
+                        {
+                            subBreeds.map((name, idx) =>
+                            
+                                <ImageSubBreedComponent
+                                    key = { idx }
+                                    subBreed = { name }
+                                    images = {[
+                                        "https://images.dog.ceo/breeds/bulldog-boston/20200710_175933.jpg",
+                                        "https://images.dog.ceo/breeds/bulldog-boston/20200710_175944.jpg",
+                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10380.jpg",
+                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10452.jpg",
+                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10596.jpg",
+                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10604.jpg",
+                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_1069.jpg"] }
+                                />
+                            )
+                        }
+                        </ListGroup>
+                    </Card>
+                </Card.Body>
             </Card>
         }
         </React.Fragment>

@@ -1,3 +1,3 @@
-import ImageBreedComponent from './ImagesComponent';
+import ImageBreedComponent from './ImageBreedComponent';
 
 export default ImageBreedComponent

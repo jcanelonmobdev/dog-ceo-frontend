@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import FilterModalComponent from '../../component/FilterModalComponent'
-import ImagesComponent from '../../component/ImagesComponent'
+import ImageBreedComponent from '../../component/ImageBreedComponent'
 import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
 
 
@@ -38,12 +38,12 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                 </Card>
 
                 {/* aqui va la iteracion de las razas a dibujar */}
-                <ImagesComponent
+                <ImageBreedComponent
                     breed = "Bulldog"
                     subBreeds = {['Boston', 'French']} 
                     // los subbreeds van con sus imagenes
                 />
-                <ImagesComponent
+                <ImageBreedComponent
                     breed = "Raza 2"
                     subBreeds = {['SubRaza2.1', 'SubRaza2.2', "SubRaza2.3"]} 
                     // los subbreeds van con sus imagenes
