@@ -74,13 +74,25 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
             setListBreeds(newList)
         }
 
-        // manejo de datos imagenes
+        // limpiar la seleccion de razas y subrazas
+        const handleUpdateClearSelection = (arr) => {
+            const newList = arr.map(element => {
+
+                const newSubBreed = element.subbreeds.map(sb => {
+                    return { ...sb, selected: false}
+                });
+                return { ...element, selected: false, subbreeds: newSubBreed}
+            });
+            setListBreeds(newList)
+        }
+
         // inicializador de datos
         const InitializateAll = async () => {
             
             setShow(false);
             const data = await breedUseCase.getListAll();
-
+            
+            // asingar imagenes a las razas / async
             const asyncImages = await Promise.all(data.map(async (element) => {
                 const images = await imageBreedUseCase.getImages(element.breed);
                 return {...element, images: images}
@@ -120,18 +132,11 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                             <FilterModalComponent
                                 breeds = { listBreeds }
                                 showModal = { show }
-                                onHideModal = {
-                                    () => handleUpdateShow(false) 
-                                }
-                                onChangeBreed = { 
-                                    (id, status) => hadleUpdateBreeds(listBreeds, id, status) 
-                                }
-                                onChangeSubBreed = { 
-                                    (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) 
-                                }
-                                onSelectAll = { 
-                                    (idBreed, status) => handleUpdateSelectAllSubBreeds(listBreeds, idBreed, status)
-                                }
+                                onHideModal = { () => handleUpdateShow(false) }
+                                onClearSelection = { () => handleUpdateClearSelection(listBreeds) } 
+                                onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
+                                onChangeSubBreed = { (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
+                                onSelectAll = { (idBreed, status) => handleUpdateSelectAllSubBreeds(listBreeds, idBreed, status) }
                             />
                         </Card.Body>
                     </Card>

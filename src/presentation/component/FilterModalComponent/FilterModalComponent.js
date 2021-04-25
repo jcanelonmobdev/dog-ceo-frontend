@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 
-const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, onChangeSubBreed, onSelectAll }) => {
+const FilterModalComponent = ({ breeds, showModal, onHideModal, onClearSelection, onChangeBreed, onChangeSubBreed, onSelectAll }) => {
 
     const [breedSelected, setBreedSelected] = React.useState(-1);
 
@@ -93,8 +93,11 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="primary" onClick={() => onClearSelection()}>
+                        Clear
+                    </Button>
                     <Button variant="secondary" onClick={() => onHideModal()}>
-                    Close
+                        Close
                     </Button>
                 </Modal.Footer>
             </Modal>
