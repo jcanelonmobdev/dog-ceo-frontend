@@ -138,13 +138,25 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                     </Card>
 
                     {
-                        listBreeds.filter(b => b.selected == true).map((element, idx) => 
-                            <ImageBreedComponent
-                                key = { idx }
-                                breed = { element.breed }
-                                subbreeds = { element.subbreeds } 
-                                images = { element.images }
-                            />
+
+                        listBreeds.map( (element, idx) => 
+                            // si es raza sola y esta seleccionada
+                            element.subbreeds.length === 0 && element.selected ?
+                                <ImageBreedComponent
+                                    key = { idx }
+                                    breed = { element.breed }
+                                    subbreeds = { element.subbreeds } 
+                                    images = { element.images }
+                                />
+                                : 
+                            // si tiene subrazas seleccionadas
+                            element.subbreeds.filter(sb => sb.selected).length > 0 &&
+                                <ImageBreedComponent
+                                        key = { idx }
+                                        breed = { element.breed }
+                                        subbreeds = { element.subbreeds.filter(sb => sb.selected) } 
+                                        images = { element.images }
+                                />
                         )
                     }
                     
