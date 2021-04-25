@@ -34,7 +34,11 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onClearSelection
                                                 selected = {breedSelected === e.id ? `"selected"`: '' }
                                                 onClick={ () => setBreedSelected(e.id)}
                                             >
-                                                {e.breed}, {e.subbreeds.length}
+                                                {
+                                                    e.subbreeds.length === 0 ? `${e.breed}` :  `${e.breed} [sb: ${e.subbreeds.length - e.subbreeds.filter(sb => sb.selected).length}]`
+                                                }
+
+                                                {/* {e.breed} {e.subbreeds.length - e.subbreeds.filter(sb => sb.selected).length} */}
                                             </option>
                                         )
                                     }
