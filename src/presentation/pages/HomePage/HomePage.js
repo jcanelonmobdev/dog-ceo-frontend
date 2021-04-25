@@ -57,7 +57,6 @@ import { findAllByDisplayValue } from '@testing-library/react';
 
         // seleccionar o deseleccionar todas las subrazas de una raza
         const handleUpdateSelectAllSubBreeds = (arr, idBreed, value) => {
-            console.log(idBreed)
             const newList = arr.map(element => {
 
                 if (element.id === idBreed)

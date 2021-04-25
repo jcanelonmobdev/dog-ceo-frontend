@@ -63,6 +63,7 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                                                 <>
                                                     {/* si tiene subrazas */}
                                                     <Form.Check 
+                                                        key = { idx }
                                                         type="checkbox" 
                                                         onChange= { (ev) => onSelectAll(e.id, ev.target.checked) }
                                                         variant="success"
@@ -95,7 +96,6 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                     <Button variant="secondary" onClick={() => onHideModal()}>
                     Close
                     </Button>
-                    <Button variant="primary">Understood</Button>
                 </Modal.Footer>
             </Modal>
         }
