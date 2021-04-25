@@ -97,10 +97,10 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onClearSelection
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => onClearSelection()}>
+                    <Button variant="secondary" onClick={() => onClearSelection()}>
                         Clear
                     </Button>
-                    <Button variant="secondary" onClick={() => onHideModal()}>
+                    <Button variant="primary" onClick={() => onHideModal()}>
                         Close
                     </Button>
                 </Modal.Footer>
