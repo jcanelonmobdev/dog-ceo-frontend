@@ -31,7 +31,7 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                                         breeds.map((e, idx) => 
                                             <option 
                                                 key={idx} 
-                                                selected = {breedSelected == e.id ? `"selected"`: '' }
+                                                selected = {breedSelected === e.id ? `"selected"`: '' }
                                                 onClick={ () => setBreedSelected(e.id)}
                                             >
                                                 {e.breed}, {e.subbreeds.length}

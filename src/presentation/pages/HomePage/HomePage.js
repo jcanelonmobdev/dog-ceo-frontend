@@ -71,6 +71,7 @@ import { findAllByDisplayValue } from '@testing-library/react';
             setListBreeds(newList)
         }
 
+        // manejo de datos imagenes
         // inicializador de datos
         const InitializateAll = async () => {
             
@@ -94,7 +95,9 @@ import { findAllByDisplayValue } from '@testing-library/react';
 
         // ..
         return (
-            <Container className="p-3">
+            <React.Fragment>
+            {
+                <Container className="p-3">
                 <Jumbotron>
                     <h1 className="header">Welcome To Dog-Ceo Challenge</h1>
 
@@ -129,18 +132,27 @@ import { findAllByDisplayValue } from '@testing-library/react';
 
                     {/* aqui va la iteracion de las razas a dibujar */}
                     {/* utilizar el reduce por ejemplo, para determinar si la raza tiene subrazas seleccionadas */}
-                    <ImageBreedComponent
-                        breed = "Bulldog"
-                        subBreeds = {['Boston', 'French']} 
-                        // los subbreeds van con sus imagenes
-                    />
-                    <ImageBreedComponent
+
+                    {
+                        listBreeds.filter(b => b.selected == true).map((element, idx) => 
+                            <ImageBreedComponent
+                                key = { idx }
+                                breed = { element.breed }
+                                subbreeds = { element.subbreeds } 
+                            />
+                        )
+                    }
+                    
+                    {/* <ImageBreedComponent
                         breed = "Raza 2"
                         subBreeds = {['SubRaza2.1', 'SubRaza2.2', "SubRaza2.3"]} 
                         // los subbreeds van con sus imagenes
-                    />
+                    /> */}
                 </Jumbotron>
             </Container>
+            }
+            </React.Fragment>
+            
         ); 
     }
   
