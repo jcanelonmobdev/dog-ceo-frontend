@@ -99,7 +99,6 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
             InitializateAll();
           }, []);
 
-
         // ..
         return (
             <React.Fragment>
@@ -138,7 +137,6 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                     </Card>
 
                     {
-
                         listBreeds.map( (element, idx) => 
                             // si es raza sola y esta seleccionada
                             element.subbreeds.length === 0 && element.selected ?
@@ -159,12 +157,6 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                                 />
                         )
                     }
-                    
-                    {/* <ImageBreedComponent
-                        breed = "Raza 2"
-                        subBreeds = {['SubRaza2.1', 'SubRaza2.2', "SubRaza2.3"]} 
-                        // los subbreeds van con sus imagenes
-                    /> */}
                 </Jumbotron>
             </Container>
             }
