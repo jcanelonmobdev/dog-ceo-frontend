@@ -55,6 +55,23 @@ import { findAllByDisplayValue } from '@testing-library/react';
             setListBreeds(newList)
         }
 
+        // seleccionar o deseleccionar todas las subrazas de una raza
+        const handleUpdateSelectAllSubBreeds = (arr, idBreed, value) => {
+            console.log(idBreed)
+            const newList = arr.map(element => {
+
+                if (element.id === idBreed)
+                {
+                    const newSubBreed = element.subbreeds.map(sb => {
+                        return { ...sb, selected: value}
+                    });
+                    return { ...element, selected: value, subbreeds: newSubBreed}
+                }
+                return element;
+            });
+            setListBreeds(newList)
+        }
+
         // inicializador de datos
         const InitializateAll = async () => {
             
@@ -95,10 +112,18 @@ import { findAllByDisplayValue } from '@testing-library/react';
                             <FilterModalComponent
                                 breeds = { listBreeds }
                                 showModal = { show }
-                                onHideModal = {() => handleUpdateShow(false) }
-                                onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
+                                onHideModal = {
+                                    () => handleUpdateShow(false) 
+                                }
+                                onChangeBreed = { 
+                                    (id, status) => hadleUpdateBreeds(listBreeds, id, status) 
+                                }
                                 onChangeSubBreed = { 
-                                    (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
+                                    (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) 
+                                }
+                                onSelectAll = { 
+                                    (idBreed, status) => handleUpdateSelectAllSubBreeds(listBreeds, idBreed, status)
+                                }
                             />
                         </Card.Body>
                     </Card>

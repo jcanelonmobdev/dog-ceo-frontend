@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 
-const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, onChangeSubBreed  }) => {
+const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, onChangeSubBreed, onSelectAll }) => {
 
     const [breedSelected, setBreedSelected] = React.useState(-1);
 
@@ -64,6 +64,7 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                                                     {/* si tiene subrazas */}
                                                     <Form.Check 
                                                         type="checkbox" 
+                                                        onChange= { (ev) => onSelectAll(e.id, ev.target.checked) }
                                                         variant="success"
                                                         label=" < select all subreeds > " 
                                                         checked = { e.selected }
