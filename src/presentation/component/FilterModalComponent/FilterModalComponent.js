@@ -27,8 +27,15 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                                     <Form.Label>Select breed</Form.Label>
                                     <Form.Control as="select" htmlSize={10} custom>
                                     {
+                                        // al dar click setea como breed seleccionado
                                         breeds.map((e, idx) => 
-                                            <option key={idx} onClick={ () => setBreedSelected(e.id)}>{e.breed}, {e.subbreeds.length}</option>
+                                            <option 
+                                                key={idx} 
+                                                selected = {breedSelected == e.id ? `"selected"`: '' }
+                                                onClick={ () => setBreedSelected(e.id)}
+                                            >
+                                                {e.breed}, {e.subbreeds.length}
+                                            </option>
                                         )
                                     }
                                     </Form.Control>
@@ -47,6 +54,7 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                                                 <>
                                                     {/* si no tiene subrazas */}
                                                     <Form.Check 
+                                                        key = { idx }
                                                         type = "checkbox" 
                                                         onChange = {(ev) => onChangeBreed(e.id, ev.target.checked)}
                                                         label = {e.breed} 
@@ -58,6 +66,7 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                                                     {
                                                         e.subbreeds.map(sb =>
                                                             <Form.Check 
+                                                                key = { sb.id }
                                                                 id = {sb.id} 
                                                                 type = "checkbox" 
                                                                 onChange = { (ev) => onChangeSubBreed(e.id, sb.id, ev.target.checked) }

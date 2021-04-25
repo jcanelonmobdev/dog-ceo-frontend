@@ -45,27 +45,34 @@ import { findAllByDisplayValue } from '@testing-library/react';
         }
 
         const hadleUpdateSubBreeds = (arr, idBreed, id, value) => {
-            
+            let v = true;
+
             const newList = arr.map(element => {
+
                 if (element.id === idBreed)
                 {
                     const newSubBreed = element.subbreeds.map(sb => {
 
                         if (sb.id === id)
                         {
+                            v = v && value;
                             return { ...sb, selected: value}
                         }
                         else
+                        {
+                            v = v && sb.selected;
                             return sb;
+                        }
                     });
-                    return { ...element, subbreeds: newSubBreed}
+                    console.log(v);
+                    return { ...element, selected: v, subbreeds: newSubBreed}
                 }
                 return element;
             });
             setListBreeds(newList)
             
-            const v = verifyIfAllSubBreedsAreSelected(newList, idBreed);
-            console.log(v);
+            // const v = verifyIfAllSubBreedsAreSelected(newList, idBreed);
+            // hadleUpdateBreeds(newList, idBreed, v);
         }
 
         // inicializador de datos
