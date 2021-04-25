@@ -6,9 +6,9 @@ const ImageBreedComponent = ({ breed, subbreeds, images  }) => {
     return (
         <React.Fragment>
         {   
-            <Card className="col-lg-12 col-12">
+            <Card className="col-lg-12 col-12" >
                 <Card.Body>
-                    <Card>
+                    <Card  border="secondary">
                         <Card.Header as="h5">{ breed }</Card.Header>
                         <ListGroup>
                         {
