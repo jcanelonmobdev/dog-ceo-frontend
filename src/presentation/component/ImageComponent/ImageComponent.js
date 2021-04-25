@@ -2,7 +2,7 @@
 import React from 'react';
 import { ListGroup, Card, Row, Col, Image } from 'react-bootstrap';
 
-const ImageSubBreedComponent = ({ name, images }) => {
+const ImageComponent = ({ name, images }) => {
     return (
         <React.Fragment>
         {
@@ -28,4 +28,4 @@ const ImageSubBreedComponent = ({ name, images }) => {
     );
 }
 
-export default ImageSubBreedComponent;
+export default ImageComponent;

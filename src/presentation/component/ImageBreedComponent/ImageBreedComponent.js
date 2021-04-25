@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroup , Card } from 'react-bootstrap';
-import ImageSubBreedComponent from '../ImageSubBreedComponent/ImageSubBreedComponent'
+import ImageComponent from '../ImageComponent/ImageComponent'
 
 const ImageBreedComponent = ({ breed, subbreeds, images  }) => {
     return (
@@ -14,13 +14,13 @@ const ImageBreedComponent = ({ breed, subbreeds, images  }) => {
                         {
                             // si es solo raza
                             subbreeds.length === 0 ? 
-                                <ImageSubBreedComponent
+                                <ImageComponent
                                     images = { images.slice(0, 12) }
                                 />
                                 :
                             // si tiene subrazas
                             subbreeds.map((sb, idx) =>
-                                <ImageSubBreedComponent
+                                <ImageComponent
                                     key = { idx }
                                     name = { sb.name }
                                     images = { images.filter( img => img.includes(sb.name) ).slice(0, 12) }
