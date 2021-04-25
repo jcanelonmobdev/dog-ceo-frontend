@@ -62,16 +62,22 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onChangeBreed, o
                                                 </> :
                                                 <>
                                                     {/* si tiene subrazas */}
-                                                    <Form.Check type="checkbox" label="select all subreeds" />
+                                                    <Form.Check 
+                                                        type="checkbox" 
+                                                        variant="success"
+                                                        label=" < select all subreeds > " 
+                                                        checked = { e.selected }
+                                                    />
                                                     {
                                                         e.subbreeds.map(sb =>
                                                             <Form.Check 
-                                                                key = { sb.id }
+                                                                key = { sb.id}
                                                                 id = {sb.id} 
                                                                 type = "checkbox" 
                                                                 onChange = { (ev) => onChangeSubBreed(e.id, sb.id, ev.target.checked) }
                                                                 label = {sb.name} 
-                                                                checked={sb.selected}  />
+                                                                checked={sb.selected}  
+                                                            />
                                                         )     
                                                     }
 

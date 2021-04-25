@@ -28,24 +28,8 @@ import { findAllByDisplayValue } from '@testing-library/react';
             setListBreeds(newList);
         }
 
-        const verifyIfAllSubBreedsAreSelected = (list, id) => {
-            
-            let verify = true;
-            
-            list.map(element => {
-                if (element.id === id) {
-
-                    element.subbreeds.map(sb => {
-                        if (!sb.selected)
-                            verify = false;
-                    });
-                }
-            })
-            return verify;
-        }
-
         const hadleUpdateSubBreeds = (arr, idBreed, id, value) => {
-            let v = true;
+            let verifyAllSubreedsAsSelected = true;
 
             const newList = arr.map(element => {
 
@@ -55,24 +39,20 @@ import { findAllByDisplayValue } from '@testing-library/react';
 
                         if (sb.id === id)
                         {
-                            v = v && value;
+                            verifyAllSubreedsAsSelected = verifyAllSubreedsAsSelected && value;
                             return { ...sb, selected: value}
                         }
                         else
                         {
-                            v = v && sb.selected;
+                            verifyAllSubreedsAsSelected = verifyAllSubreedsAsSelected && sb.selected;
                             return sb;
                         }
                     });
-                    console.log(v);
-                    return { ...element, selected: v, subbreeds: newSubBreed}
+                    return { ...element, selected: verifyAllSubreedsAsSelected, subbreeds: newSubBreed}
                 }
                 return element;
             });
             setListBreeds(newList)
-            
-            // const v = verifyIfAllSubBreedsAreSelected(newList, idBreed);
-            // hadleUpdateBreeds(newList, idBreed, v);
         }
 
         // inicializador de datos
