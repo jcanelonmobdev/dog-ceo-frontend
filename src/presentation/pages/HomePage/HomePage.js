@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import BreedUseCase from '../../../domain/usecase/BreedUseCase'
+import ImageBreedUseCase from '../../../domain/usecase/ImageBreedUseCase'
 import FilterModalComponent from '../../component/FilterModalComponent'
 import ImageBreedComponent from '../../component/ImageBreedComponent'
 import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
-import { findAllByDisplayValue } from '@testing-library/react';
 
 
     const HomePage = () => {
@@ -14,6 +14,7 @@ import { findAllByDisplayValue } from '@testing-library/react';
 
         // caso de uso
         const breedUseCase = new BreedUseCase();
+        const imageBreedUseCase = new ImageBreedUseCase();
         
         // manejo de datos de razas y subrazas
         const [listBreeds, setListBreeds] = React.useState([]);
@@ -21,7 +22,9 @@ import { findAllByDisplayValue } from '@testing-library/react';
         const hadleUpdateBreeds = (arr, id, value) => {
             const newList = arr.map(element => {
                 if (element.id === id)
+                {
                     return { ...element, selected: value }
+                }
                 else
                     return element;
             });
@@ -78,9 +81,13 @@ import { findAllByDisplayValue } from '@testing-library/react';
             setShow(false);
             const data = await breedUseCase.getListAll();
 
+            const asyncImages = await Promise.all(data.map(async (element) => {
+                const images = await imageBreedUseCase.getImages(element.breed);
+                return {...element, images: images}
+            }))
+
             setListBreeds(
-                data.map(
-                    element => {
+                asyncImages.map(element => {
                         return { ...element }
                     }
                 ) 
@@ -130,15 +137,13 @@ import { findAllByDisplayValue } from '@testing-library/react';
                         </Card.Body>
                     </Card>
 
-                    {/* aqui va la iteracion de las razas a dibujar */}
-                    {/* utilizar el reduce por ejemplo, para determinar si la raza tiene subrazas seleccionadas */}
-
                     {
                         listBreeds.filter(b => b.selected == true).map((element, idx) => 
                             <ImageBreedComponent
                                 key = { idx }
                                 breed = { element.breed }
                                 subbreeds = { element.subbreeds } 
+                                images = { element.images }
                             />
                         )
                     }

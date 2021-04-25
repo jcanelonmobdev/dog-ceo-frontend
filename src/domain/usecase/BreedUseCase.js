@@ -21,7 +21,8 @@ export default class BreedUseCase extends Services {
                             name: e,
                             selected: false
                         }
-                    })
+                    }),
+                    images: []
                 }
             });
 
@@ -31,6 +32,6 @@ export default class BreedUseCase extends Services {
         catch (error) {
             console.log(`Error: ${error}`)
         }
-        return
+        return;
     }
 }

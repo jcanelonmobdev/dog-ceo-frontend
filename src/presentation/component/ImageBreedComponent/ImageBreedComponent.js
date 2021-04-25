@@ -3,7 +3,7 @@ import { ListGroup , Card } from 'react-bootstrap';
 import ImageSubBreedComponent from '../ImageSubBreedComponent/ImageSubBreedComponent'
 
 
-const ImageBreedComponent = ({ breed, subbreeds  }) => {
+const ImageBreedComponent = ({ breed, subbreeds, images  }) => {
     return (
         <React.Fragment>
         {   
@@ -14,30 +14,18 @@ const ImageBreedComponent = ({ breed, subbreeds  }) => {
                         <Card.Header as="h5">{ breed }</Card.Header>
                         <ListGroup>
                         {
+                            // si es solo raza
                             subbreeds.length === 0 ? 
                                 <ImageSubBreedComponent
-                                    images = {[
-                                        "https://images.dog.ceo/breeds/bulldog-boston/20200710_175933.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/20200710_175944.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10380.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10452.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10596.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10604.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_1069.jpg"] }
+                                    images = { images.slice(0, 12) }
                                 />
                                 :
+                            // si tiene subrazas
                             subbreeds.map((sb, idx) =>
                                 <ImageSubBreedComponent
                                     key = { idx }
                                     name = { sb.name }
-                                    images = {[
-                                        "https://images.dog.ceo/breeds/bulldog-boston/20200710_175933.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/20200710_175944.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10380.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10452.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10596.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_10604.jpg",
-                                        "https://images.dog.ceo/breeds/bulldog-boston/n02096585_1069.jpg"] }
+                                    images = { images.filter( img => img.includes(sb.name) ).slice(0, 12) }
                                 />
                             )
                         }
