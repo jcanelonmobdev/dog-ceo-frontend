@@ -1,21 +1,24 @@
 import React from 'react';
-import { ListGroup , Card } from 'react-bootstrap';
+import { Collapse, ListGroup , Card } from 'react-bootstrap';
 import ImageComponent from '../ImageComponent/ImageComponent'
 
-const ImageBreedComponent = ({ breed, subbreeds, images, maxImages, sizeImages, onImageClick  }) => {
+const ImageBreedComponent = ({ breed, subbreeds, images, maxImages, sizeImages, colapse, onSetColapse, onImageClick  }) => {
+   console.log(sizeImages)
     return (
         <React.Fragment>
         {   
             <Card className="col-lg-12 col-12" >
                 <Card.Body>
-                    <Card  border="secondary">
-                        <Card.Header as="h5">{ breed }</Card.Header>
+                    <Card border="secondary">
+                        <Card.Header as="h5" onClick={() => onSetColapse(!colapse)}>{ breed }</Card.Header>
+                        <Collapse in={!colapse}>
                         <ListGroup>
                         {
                             // si es solo raza
                             subbreeds.length === 0 ? 
                                 <ImageComponent
                                     images = { images.slice(0, maxImages) }
+                                    size = { sizeImages }
                                     onClick = { (src) => onImageClick(src) }
                                 />
                                 :
@@ -31,6 +34,7 @@ const ImageBreedComponent = ({ breed, subbreeds, images, maxImages, sizeImages, 
                             )
                         }
                         </ListGroup>
+                        </Collapse>
                     </Card>
                 </Card.Body>
             </Card>

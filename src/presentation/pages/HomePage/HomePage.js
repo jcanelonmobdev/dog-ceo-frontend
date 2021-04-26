@@ -40,11 +40,18 @@ import ImageModalComponent from '../../component/ImageModalComponent';
         // manejo de datos de razas y subrazas
         const [listBreeds, setListBreeds] = React.useState([]);
         
-        const hadleUpdateBreeds = (arr, id, value) => {
+        const hadleUpdateBreeds = (arr, type, id, value) => {
             const newList = arr.map(element => {
                 if (element.id === id)
                 {
-                    return { ...element, selected: value }
+                    if (type === 'selected')
+                    {
+                        return { ...element, selected: value }
+                    }
+                    else if (type === 'colapse')
+                    {
+                        return { ...element, colapse: value }
+                    }
                 }
                 else
                     return element;
@@ -123,7 +130,7 @@ import ImageModalComponent from '../../component/ImageModalComponent';
 
             setListBreeds(
                 asyncImages.map(element => {
-                        return { ...element }
+                        return { ...element, colapse: false }
                     }
                 ) 
             );
@@ -145,7 +152,7 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                         showModal = { showFilterModal }
                         onHideModal = { () => handleUpdateShowFilterModal(false) }
                         onClearSelection = { () => handleUpdateClearSelection(listBreeds) } 
-                        onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
+                        onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, 'selected', id, status) }
                         onChangeSubBreed = { (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
                         onSelectAll = { (idBreed, status) => handleUpdateSelectAllSubBreeds(listBreeds, idBreed, status) }
                     />
@@ -220,19 +227,23 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                                     images = { element.images }
                                     maxImages = { maxImageList }
                                     sizeImages = { sizeImageList }
+                                    colapse = { element.colapse }
+                                    onSetColapse = { (status) => hadleUpdateBreeds(listBreeds, 'colapse', element.id, status) }
                                     onImageClick = { (src) => showImageSelected(src, element.breed, '')}
                                 />
                                 : 
                             // si tiene subrazas seleccionadas
                             element.subbreeds.filter(sb => sb.selected).length > 0 &&
                                 <ImageBreedComponent
-                                        key = { idx }
-                                        breed = { element.breed }
-                                        subbreeds = { element.subbreeds.filter(sb => sb.selected) } 
-                                        images = { element.images }
-                                        maxImages = { maxImageList }
-                                        sizeImages = { sizeImageList }
-                                        onImageClick = { (src, subbreed) => showImageSelected(src, element.breed, subbreed)}
+                                    key = { idx }
+                                    breed = { element.breed }
+                                    subbreeds = { element.subbreeds.filter(sb => sb.selected) } 
+                                    images = { element.images }
+                                    maxImages = { maxImageList }
+                                    sizeImages = { sizeImageList }
+                                    colapse = { element.colapse }
+                                    onSetColapse = { (status) => hadleUpdateBreeds(listBreeds, 'colapse', element.id, status) }
+                                    onImageClick = { (src, subbreed) => showImageSelected(src, element.breed, subbreed)}
                                 />
                         )
                     }
