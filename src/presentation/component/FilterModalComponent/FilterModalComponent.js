@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
+import { Col, Button, Form, Modal, Row } from 'react-bootstrap';
 
 const FilterModalComponent = ({ breeds, showModal, onHideModal, onClearSelection, onChangeBreed, onChangeSubBreed, onSelectAll }) => {
 
@@ -37,8 +37,6 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onClearSelection
                                                 {
                                                     e.subbreeds.length === 0 ? `${e.breed}` :  `${e.breed} [sb: ${e.subbreeds.length - e.subbreeds.filter(sb => sb.selected).length}]`
                                                 }
-
-                                                {/* {e.breed} {e.subbreeds.length - e.subbreeds.filter(sb => sb.selected).length} */}
                                             </option>
                                         )
                                     }
@@ -110,6 +108,5 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onClearSelection
             
       );
 }
-
 
 export default FilterModalComponent;

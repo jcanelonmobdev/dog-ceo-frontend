@@ -1,12 +1,9 @@
-
 import React from 'react';
-import { ListGroup, Card, Row, Col, Image } from 'react-bootstrap';
+import { Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
 
 const ImageComponent = ({ name, images, size, onClick }) => {
 
     const sizeNumber = size === 'small' ? 2: size === 'medium' ? 3 : 4;
-    console.log(size);
-    console.log(sizeNumber);
     return (
         <React.Fragment>
         {

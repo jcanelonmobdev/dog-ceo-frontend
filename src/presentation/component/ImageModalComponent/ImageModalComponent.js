@@ -42,5 +42,4 @@ const ImageModalComponent = ({ showModal, onHideModal, source }) => {
       );
 }
 
-
 export default ImageModalComponent;

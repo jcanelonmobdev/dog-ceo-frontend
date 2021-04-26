@@ -1,17 +1,16 @@
 import React from 'react';
-import { Collapse, ListGroup , Card } from 'react-bootstrap';
+import { Card, Collapse, ListGroup } from 'react-bootstrap';
 import ImageComponent from '../ImageComponent/ImageComponent'
 
-const ImageBreedComponent = ({ breed, subbreeds, images, maxImages, sizeImages, colapse, onSetColapse, onImageClick  }) => {
-   console.log(sizeImages)
+const ImageBreedComponent = ({ breed, subbreeds, images, maxImages, sizeImages, collapse, onSetCollapse, onImageClick  }) => {
     return (
         <React.Fragment>
         {   
             <Card className="col-lg-12 col-12" >
                 <Card.Body>
                     <Card border="secondary">
-                        <Card.Header as="h5" onClick={() => onSetColapse(!colapse)}>{ breed }</Card.Header>
-                        <Collapse in={!colapse}>
+                        <Card.Header as="h5" onClick={() => onSetCollapse(!collapse)}>{ breed }</Card.Header>
+                        <Collapse in={!collapse}>
                         <ListGroup>
                         {
                             // si es solo raza
@@ -43,6 +42,9 @@ const ImageBreedComponent = ({ breed, subbreeds, images, maxImages, sizeImages, 
     );
 }
 
+// Se que este tipo de cosas se implementan para mejorar la programacion
+// dejo esto comentado como un ejemplo, pero no se refiere a lo que esta actualmente
+
 // ImageBreedComponent.defaultProps = {
 //     breed: "",
 //     subbreeds: []
@@ -51,7 +53,6 @@ const ImageBreedComponent = ({ breed, subbreeds, images, maxImages, sizeImages, 
 // ImageBreedComponent.propTypes = {
 //     subBreeds: PropTypes.arrayOf(PropTypes.shape({
 //         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-//         //label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 //         state: PropTypes.oneOfType([PropTypes.bool]).isRequired,
 //         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 //   }))

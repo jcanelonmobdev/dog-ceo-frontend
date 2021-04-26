@@ -3,7 +3,7 @@ import BreedUseCase from '../../../domain/usecase/BreedUseCase'
 import ImageBreedUseCase from '../../../domain/usecase/ImageBreedUseCase'
 import FilterModalComponent from '../../component/FilterModalComponent'
 import ImageBreedComponent from '../../component/ImageBreedComponent'
-import { Dropdown, Row, Button, Container, Jumbotron , Card } from 'react-bootstrap';
+import { Button, Card, Container, Dropdown, Jumbotron, Row } from 'react-bootstrap';
 import ImageModalComponent from '../../component/ImageModalComponent';
 
 
@@ -48,9 +48,9 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                     {
                         return { ...element, selected: value }
                     }
-                    else if (type === 'colapse')
+                    else if (type === 'collapse')
                     {
-                        return { ...element, colapse: value }
+                        return { ...element, collapse: value }
                     }
                 }
                 else
@@ -130,7 +130,7 @@ import ImageModalComponent from '../../component/ImageModalComponent';
 
             setListBreeds(
                 asyncImages.map(element => {
-                        return { ...element, colapse: false }
+                        return { ...element, collapse: false }
                     }
                 ) 
             );
@@ -217,6 +217,8 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                     </Row>
                     <Row>
                     {
+                        // Aqui basicamente repito el componente porque son logicas distintas para 
+                        // la raza que no tiene subraza vs la que si tiene, reconozco que se puede mejorar
                         listBreeds.map( (element, idx) => 
                             // si es raza sola y esta seleccionada
                             element.subbreeds.length === 0 && element.selected ?
@@ -227,8 +229,8 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                                     images = { element.images }
                                     maxImages = { maxImageList }
                                     sizeImages = { sizeImageList }
-                                    colapse = { element.colapse }
-                                    onSetColapse = { (status) => hadleUpdateBreeds(listBreeds, 'colapse', element.id, status) }
+                                    collapse = { element.collapse }
+                                    onSetCollapse = { (status) => hadleUpdateBreeds(listBreeds, 'collapse', element.id, status) }
                                     onImageClick = { (src) => showImageSelected(src, element.breed, '')}
                                 />
                                 : 
@@ -241,8 +243,8 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                                     images = { element.images }
                                     maxImages = { maxImageList }
                                     sizeImages = { sizeImageList }
-                                    colapse = { element.colapse }
-                                    onSetColapse = { (status) => hadleUpdateBreeds(listBreeds, 'colapse', element.id, status) }
+                                    collapse = { element.collapse }
+                                    onSetCollapse = { (status) => hadleUpdateBreeds(listBreeds, 'collapse', element.id, status) }
                                     onImageClick = { (src, subbreed) => showImageSelected(src, element.breed, subbreed)}
                                 />
                         )
@@ -255,6 +257,5 @@ import ImageModalComponent from '../../component/ImageModalComponent';
             
         ); 
     }
-  
 
 export default HomePage;
