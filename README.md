@@ -14,10 +14,11 @@ La estructura de archivos utilizada fue la misma vista en el onboarding de front
 
 - Utilizar cache para almacenar las estructura de datos y las imagenes. Queda pendiente de aprender.
 - Mejorar la lógica de traer la lista de imágenes, en este proyecto las llamo y agrego a mi estructura de datos al inicializar los datos. Una posible mejora sería consultar la lista de imágenes a medida que se vayan seleccionado las razas y subrazas, en caso de no haberlas consultado antes.
+- No se si se pueden cachear las imagenes para que cuando se vuelvan a solicitar por http, no se las traiga del server nuevamente (o esto lo maneja automáticamente el navegador).
 
 ## Cosas que se me hicieron difíciles y cuesta arriba
 
-- El diseño de la interfaz UI, no tengo mucha experiencia en HTML5 así que cosas como organizar los elementos visuales fue todo un reto.
+- El diseño de la interfaz UI, no tengo mucha experiencia en HTML5 así que cosas como organizar los elementos visuales fue todo un reto.^^\*
 - Llamar funciones asincronas con PromiseAll dentro de un map, pienso que debe haber una forma menos rebuscada de hacerla HomePase.js Line: 133.
 - Mapear los datos del endpoint de breeds/list/all, ya que viene con el nombre de la raza como el key del json (ver BreedUseCase.js). Para ello utilice comandos de javascript como Object.entries, lo cual me pareció bastante rebuscado. Espero que haya una forma mas simple de hacer.
 
