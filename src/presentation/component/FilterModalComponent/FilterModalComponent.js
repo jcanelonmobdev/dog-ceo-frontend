@@ -9,6 +9,7 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onClearSelection
         <React.Fragment>
         {
             <Modal
+                key={0}
                 show={showModal}
                 onHide={() => onHideModal()}
                 backdrop="static"
@@ -19,7 +20,6 @@ const FilterModalComponent = ({ breeds, showModal, onHideModal, onClearSelection
                     <Modal.Title>Breed Filters</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
                     <Form>
                         <Row  xs={12} md={12}> 
                             <Col xs={6} md={6}>

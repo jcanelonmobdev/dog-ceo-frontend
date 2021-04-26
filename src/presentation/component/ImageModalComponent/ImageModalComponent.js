@@ -3,6 +3,9 @@ import { Button, Col, Card, Form, Image, Modal, Row  } from 'react-bootstrap';
 
 const ImageModalComponent = ({ showModal, onHideModal, source }) => {
     
+    const data = source.split(';');
+    console.log(data);
+
     return (
         <React.Fragment>
         {
@@ -13,7 +16,7 @@ const ImageModalComponent = ({ showModal, onHideModal, source }) => {
                 aria-labelledby="example-custom-modal-styling-title"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Breed Filters</Modal.Title>
+                    <Modal.Title><h2>{data[0]}</h2><h3>{data[1]}</h3></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -21,7 +24,7 @@ const ImageModalComponent = ({ showModal, onHideModal, source }) => {
                             <Col xs={12} md={12} align='center'>
                                 <Card.Text >
                                     <Image  
-                                        src={ `${source}` } fluid />
+                                        src={ `${data[2]}` } fluid />
                                 </Card.Text>
                             </Col>
                         </Row>

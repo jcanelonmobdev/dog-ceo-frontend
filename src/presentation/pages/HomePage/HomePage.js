@@ -20,7 +20,8 @@ import ImageModalComponent from '../../component/ImageModalComponent';
         const [imageSrcModal, setImageSrcModal] = useState('');
         const handleUpdateSrcModal = (src) => setImageSrcModal(src);
 
-        const showImageSelected = (src) => {
+        const showImageSelected = (src, breed, subbreed) => {
+            src =  `${breed};${subbreed};${src}`;
             handleUpdateSrcModal(src);
             handleUpdateShowImageModal(true);
         }
@@ -169,7 +170,7 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                                     breed = { element.breed }
                                     subbreeds = { element.subbreeds } 
                                     images = { element.images }
-                                    onImageClick = { (src) => showImageSelected(src)}
+                                    onImageClick = { (src) => showImageSelected(src, element.breed, '')}
                                 />
                                 : 
                             // si tiene subrazas seleccionadas
@@ -179,7 +180,7 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                                         breed = { element.breed }
                                         subbreeds = { element.subbreeds.filter(sb => sb.selected) } 
                                         images = { element.images }
-                                        onImageClick = { (src) => showImageSelected(src)}
+                                        onImageClick = { (src, subbreed) => showImageSelected(src, element.breed, subbreed)}
                                 />
                         )
                     }

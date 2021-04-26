@@ -25,7 +25,7 @@ const ImageBreedComponent = ({ breed, subbreeds, images, onImageClick  }) => {
                                     key = { idx }
                                     name = { sb.name }
                                     images = { images.filter( img => img.includes(sb.name) ).slice(0, 12) }
-                                    onClick = { (src) => onImageClick(src) }
+                                    onClick = { (src) => onImageClick(src, sb.name) }
                                 />
                             )
                         }
