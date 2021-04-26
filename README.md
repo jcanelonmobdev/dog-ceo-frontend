@@ -16,6 +16,13 @@ La estructura de archivos utilizada fue la misma vista en el onboarding de front
 - Mejorar la lógica de traer la lista de imágenes, en este proyecto las llamo y agrego a mi estructura de datos al inicializar los datos. Una posible mejora sería consultar la lista de imágenes a medida que se vayan seleccionado las razas y subrazas, en caso de no haberlas consultado antes.
 - No se si se pueden cachear las imagenes para que cuando se vuelvan a solicitar por http, no se las traiga del server nuevamente (o esto lo maneja automáticamente el navegador).
 - Me hubiese gustado usar redux. Queda pendiente por aprender.
+- Tengo el siguiente warning que no encontré cómo resolver:
+
+Line 148:14: React Hook React.useEffect has a missing dependency: 'InitializateAll'. Either include it or remove the dependency array react-hooks/exhaustive-deps
+overrideMethod @ react_devtools_backend.js:2557
+printWarnings @ webpackHotDevClient.js:138
+handleWarnings @ webpackHotDevClient.js:143
+push../node_modules/react-dev-utils/webpackHotDevClient.js.connection.onmessage @ webpackHotDevClient.js:210
 
 ## Cosas que se me hicieron difíciles y cuesta arriba
 
