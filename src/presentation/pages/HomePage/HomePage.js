@@ -275,7 +275,11 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                         )
                     }
                     </Row>
+                   
                 </Jumbotron>
+                <Row>
+                    <small>.onboarding by Julio Canelon 2021 - mobdev.cl</small>
+                </Row>
             </Container>
             }
             </React.Fragment>

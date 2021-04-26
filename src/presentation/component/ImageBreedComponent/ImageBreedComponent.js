@@ -9,7 +9,7 @@ const ImageBreedComponent = ({ breed, subbreeds, images, maxImages, sizeImages, 
             <Card className="col-lg-12 col-12" >
                 <Card.Body>
                     <Card border="secondary">
-                        <Card.Header as="h5" onClick={() => onSetCollapse(!collapse)}>{ breed }</Card.Header>
+<div className="cursor:pointer;"> <Card.Header as="h5" onClick={() => onSetCollapse(!collapse)}>{ breed }</Card.Header></div>
                         <Collapse in={!collapse}>
                         <ListGroup>
                         {
