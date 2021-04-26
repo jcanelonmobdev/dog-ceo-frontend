@@ -52,8 +52,7 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                         return { ...element, collapse: value }
                     }
                 }
-                else
-                    return element;
+                return element;
             });
             setListBreeds(newList);
         }
