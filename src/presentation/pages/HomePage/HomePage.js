@@ -183,7 +183,7 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                                 <Row>
                                     <Col xs={6} md={6} align='left'>
                                         <Button variant="primary" onClick={() => handleUpdateShowFilterModal(true)}>
-                                            Select your Filters
+                                            Select your filters
                                         </Button>
                                     </Col>
                                 </Row>
