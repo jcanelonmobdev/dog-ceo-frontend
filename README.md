@@ -4,12 +4,12 @@ Este proyecto ha sido realizado para demostrar las habilidades actuales en react
 
 ## Cómo funciona
 
-Se presenta una pantalla con el botón "Select your filters" que al pulsar se abre una ventana Modal que permite seleccionar razas y/o subrazas.
-Al seleccionar la raza si esta no tiene subrazas a la izquierda solo se presenta el nombre de la raza para que sea seleccionada.
-Si la raza seleccionada tiene subrazas, se presenta de primera una opción "select all subbreeds" que al pulsarla selecciona (o deselecciona) todas las subrazas de la raza seleccionada previamente. Luego de esta opción, aparecen todas las subrazas. En este punto puede seleccionar las subrazas que se deseen mostrar.
-Inmediatamente en la página base se van mostrando las imagenes de las razas/subrazas seleccionadas.
-Se puede pulsar en el modal de filtros el botón "Clear" lo cual borrará toda la selección actual.
-Al pulsar el botón "Close", se cierra este modal de filtros para visualizar la pantalla principal.
+- Se presenta una pantalla con el botón "Select your filters" que al pulsar se abre una ventana Modal que permite seleccionar razas y/o subrazas.
+- Al seleccionar la raza si esta no tiene subrazas a la izquierda solo se presenta el nombre de la raza para que sea seleccionada.
+- Si la raza seleccionada tiene subrazas, se presenta de primera una opción "select all subbreeds" que al pulsarla selecciona (o deselecciona) todas las subrazas de la raza seleccionada previamente. - Luego de esta opción, aparecen todas las subrazas. En este punto puede seleccionar las subrazas que se deseen mostrar.
+- Inmediatamente en la página base se van mostrando las imagenes de las razas/subrazas seleccionadas.
+- Se puede pulsar en el modal de filtros el botón "Clear" lo cual borrará toda la selección actual.
+- Al pulsar el botón "Close", se cierra este modal de filtros para visualizar la pantalla principal.
 
 En la pantalla principal existen varias opciones que le permiten al usuario "jugar" con las imagenes presentadas como:
 
