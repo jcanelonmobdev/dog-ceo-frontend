@@ -7,6 +7,9 @@
   max-width: none !important;
 }
 
+.card-header {
+  cursor: pointer;
+}
 .modal-80w {
   width: 80%;
   max-width: none !important;
