@@ -9,8 +9,8 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
     const HomePage = () => {
 
         // manejo del estado del Modal de filtros 
-        const [showModalFilter, setShowModalFilter] = useState(false);
-        const handleUpdateShow = (value) => setShowModalFilter(value);
+        const [showFilterModal, setShowFilterModal] = useState(false);
+        const handleUpdateShow = (value) => setShowFilterModal(value);
 
         // caso de uso
         const breedUseCase = new BreedUseCase();
@@ -89,7 +89,7 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
         // inicializador de datos
         const InitializateAll = async () => {
             
-            setShowModalFilter(false);
+            setShowFilterModal(false);
             const data = await breedUseCase.getListAll();
             
             // asingar imagenes a las razas / async
@@ -131,7 +131,7 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                         
                         <FilterModalComponent
                             breeds = { listBreeds }
-                            showModal = { showModalFilter }
+                            showModal = { showFilterModal }
                             onHideModal = { () => handleUpdateShow(false) }
                             onClearSelection = { () => handleUpdateClearSelection(listBreeds) } 
                             onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
