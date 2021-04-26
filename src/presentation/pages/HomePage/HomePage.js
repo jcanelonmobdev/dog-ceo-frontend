@@ -3,9 +3,8 @@ import BreedUseCase from '../../../domain/usecase/BreedUseCase'
 import ImageBreedUseCase from '../../../domain/usecase/ImageBreedUseCase'
 import FilterModalComponent from '../../component/FilterModalComponent'
 import ImageBreedComponent from '../../component/ImageBreedComponent'
-import { Button, Card, Container, Dropdown, Jumbotron, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Dropdown, Jumbotron, Row } from 'react-bootstrap';
 import ImageModalComponent from '../../component/ImageModalComponent';
-
 
     const HomePage = () => {
 
@@ -114,6 +113,14 @@ import ImageModalComponent from '../../component/ImageModalComponent';
             setListBreeds(newList)
         }
 
+        // expandir o colapsar todas las razas
+        const handleUpdateExpandCollapseAll = (arr, value) => {
+            const newList = arr.map(element => {
+                return { ...element, collapse: value }
+            });
+            setListBreeds(newList)
+        } 
+
         // inicializador de datos
         const InitializateAll = async () => {
             
@@ -173,11 +180,29 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                                 <Card.Text> 
                                     You can filter by breeds and / or subbreeds
                                 </Card.Text>
-                                <Button variant="primary" onClick={() => handleUpdateShowFilterModal(true)}>
-                                    Select your Filters
-                                </Button>
-                                
-                                
+                                <Card.Text> 
+                                <Row>
+                                    <Col xs={6} md={6} align='left'>
+                                        <Button variant="primary" onClick={() => handleUpdateShowFilterModal(true)}>
+                                            Select your Filters
+                                        </Button>
+                                    </Col>
+                                </Row>
+                                </Card.Text>
+                                <Card.Text> 
+                                    <Row>
+                                        <Col xs={2} md={2} align='left'>
+                                            <Button variant="success" onClick={() => handleUpdateExpandCollapseAll(listBreeds, false)}>
+                                                Expand
+                                            </Button>
+                                        </Col>
+                                        <Col xs={2} md={2} align='left'>
+                                            <Button variant="warning" onClick={() => handleUpdateExpandCollapseAll(listBreeds, true)}>
+                                                Collapse
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </Card.Text>
                             </Card.Body>
                         </Card>
                         {/* tarjeta de las propiedades de la lista de imagenes */}
