@@ -4,13 +4,26 @@ import ImageBreedUseCase from '../../../domain/usecase/ImageBreedUseCase'
 import FilterModalComponent from '../../component/FilterModalComponent'
 import ImageBreedComponent from '../../component/ImageBreedComponent'
 import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
+import ImageModalComponent from '../../component/ImageModalComponent';
 
 
     const HomePage = () => {
 
         // manejo del estado del Modal de filtros 
         const [showFilterModal, setShowFilterModal] = useState(false);
-        const handleUpdateShow = (value) => setShowFilterModal(value);
+        const handleUpdateShowFilterModal = (value) => setShowFilterModal(value);
+
+        // manejo del estado del Modal para mostrar la imagen clickeada
+        const [showImageModal, setShowImageModal] = useState(false);
+        const handleUpdateShowImageModal = (value) => setShowImageModal(value);
+
+        const [imageSrcModal, setImageSrcModal] = useState('');
+        const handleUpdateSrcModal = (src) => setImageSrcModal(src);
+
+        const showImageSelected = (src) => {
+            handleUpdateSrcModal(src);
+            handleUpdateShowImageModal(true);
+        }
 
         // caso de uso
         const breedUseCase = new BreedUseCase();
@@ -125,18 +138,24 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                         <Card.Text> 
                             You can filter by breeds and / or subbreeds
                         </Card.Text>
-                        <Button variant="primary" onClick={() => handleUpdateShow(true)}>
+                        <Button variant="primary" onClick={() => handleUpdateShowFilterModal(true)}>
                             Select your Filters
                         </Button>
                         
                         <FilterModalComponent
                             breeds = { listBreeds }
                             showModal = { showFilterModal }
-                            onHideModal = { () => handleUpdateShow(false) }
+                            onHideModal = { () => handleUpdateShowFilterModal(false) }
                             onClearSelection = { () => handleUpdateClearSelection(listBreeds) } 
                             onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
                             onChangeSubBreed = { (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
                             onSelectAll = { (idBreed, status) => handleUpdateSelectAllSubBreeds(listBreeds, idBreed, status) }
+                        />
+
+                        <ImageModalComponent
+                            showModal = { showImageModal }
+                            source = { imageSrcModal }
+                            onHideModal = { () => handleUpdateShowImageModal(false) }
                         />
                     </Card.Body>
                     </Card>
@@ -150,6 +169,7 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                                     breed = { element.breed }
                                     subbreeds = { element.subbreeds } 
                                     images = { element.images }
+                                    onImageClick = { (src) => showImageSelected(src)}
                                 />
                                 : 
                             // si tiene subrazas seleccionadas
@@ -159,6 +179,7 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                                         breed = { element.breed }
                                         subbreeds = { element.subbreeds.filter(sb => sb.selected) } 
                                         images = { element.images }
+                                        onImageClick = { (src) => showImageSelected(src)}
                                 />
                         )
                     }
