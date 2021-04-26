@@ -9,8 +9,8 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
     const HomePage = () => {
 
         // manejo del estado del Modal de filtros 
-        const [show, setShow] = useState(false);
-        const handleUpdateShow = (value) => setShow(value);
+        const [showModalFilter, setShowModalFilter] = useState(false);
+        const handleUpdateShow = (value) => setShowModalFilter(value);
 
         // caso de uso
         const breedUseCase = new BreedUseCase();
@@ -89,7 +89,7 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
         // inicializador de datos
         const InitializateAll = async () => {
             
-            setShow(false);
+            setShowModalFilter(false);
             const data = await breedUseCase.getListAll();
             
             // asingar imagenes a las razas / async
@@ -120,25 +120,25 @@ import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
                     <h1 className="header">Welcome To Dog-Ceo Challenge</h1>
 
                 <Card className="col-lg-12 col-12">
-                        <Card.Body>
-                            <Card.Title>Breed Filters</Card.Title>
-                            <Card.Text> 
-                                You can filter by breeds and / or subbreeds
-                            </Card.Text>
-                            <Button variant="primary" onClick={() => handleUpdateShow(true)}>
-                                Select your Filters
-                            </Button>
-                         
-                            <FilterModalComponent
-                                breeds = { listBreeds }
-                                showModal = { show }
-                                onHideModal = { () => handleUpdateShow(false) }
-                                onClearSelection = { () => handleUpdateClearSelection(listBreeds) } 
-                                onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
-                                onChangeSubBreed = { (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
-                                onSelectAll = { (idBreed, status) => handleUpdateSelectAllSubBreeds(listBreeds, idBreed, status) }
-                            />
-                        </Card.Body>
+                    <Card.Body>
+                        <Card.Title>Breed Filters</Card.Title>
+                        <Card.Text> 
+                            You can filter by breeds and / or subbreeds
+                        </Card.Text>
+                        <Button variant="primary" onClick={() => handleUpdateShow(true)}>
+                            Select your Filters
+                        </Button>
+                        
+                        <FilterModalComponent
+                            breeds = { listBreeds }
+                            showModal = { showModalFilter }
+                            onHideModal = { () => handleUpdateShow(false) }
+                            onClearSelection = { () => handleUpdateClearSelection(listBreeds) } 
+                            onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
+                            onChangeSubBreed = { (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
+                            onSelectAll = { (idBreed, status) => handleUpdateSelectAllSubBreeds(listBreeds, idBreed, status) }
+                        />
+                    </Card.Body>
                     </Card>
 
                     {
