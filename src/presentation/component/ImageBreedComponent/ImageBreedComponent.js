@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroup , Card } from 'react-bootstrap';
 import ImageComponent from '../ImageComponent/ImageComponent'
 
-const ImageBreedComponent = ({ breed, subbreeds, images, onImageClick  }) => {
+const ImageBreedComponent = ({ breed, subbreeds, images, maxImages, sizeImages, onImageClick  }) => {
     return (
         <React.Fragment>
         {   
@@ -15,7 +15,7 @@ const ImageBreedComponent = ({ breed, subbreeds, images, onImageClick  }) => {
                             // si es solo raza
                             subbreeds.length === 0 ? 
                                 <ImageComponent
-                                    images = { images.slice(0, 12) }
+                                    images = { images.slice(0, maxImages) }
                                     onClick = { (src) => onImageClick(src) }
                                 />
                                 :
@@ -24,7 +24,8 @@ const ImageBreedComponent = ({ breed, subbreeds, images, onImageClick  }) => {
                                 <ImageComponent
                                     key = { idx }
                                     name = { sb.name }
-                                    images = { images.filter( img => img.includes(sb.name) ).slice(0, 12) }
+                                    images = { images.filter( img => img.includes(sb.name) ).slice(0, maxImages) }
+                                    size = { sizeImages }
                                     onClick = { (src) => onImageClick(src, sb.name) }
                                 />
                             )

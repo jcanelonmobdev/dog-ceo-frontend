@@ -2,7 +2,9 @@
 import React from 'react';
 import { ListGroup, Card, Row, Col, Image } from 'react-bootstrap';
 
-const ImageComponent = ({ name, images, onClick }) => {
+const ImageComponent = ({ name, images, size, onClick }) => {
+
+    const sizeNumber = size === 'small' ? 2: size === 'medium' ? 3 : 4; 
     return (
         <React.Fragment>
         {
@@ -13,7 +15,7 @@ const ImageComponent = ({ name, images, onClick }) => {
                 <Row  xs={12} md={12}> 
                 {
                     images.map((source, idx) => 
-                        <Col key={ idx } xs={2} md={2}>
+                        <Col key={ idx } xs={sizeNumber} md={sizeNumber}>
                             <Card.Text >
                                 <Image onClick= { () => onClick(source)}
                                     src={ `${source}` } thumbnail   />

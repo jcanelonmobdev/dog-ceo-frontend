@@ -3,7 +3,7 @@ import BreedUseCase from '../../../domain/usecase/BreedUseCase'
 import ImageBreedUseCase from '../../../domain/usecase/ImageBreedUseCase'
 import FilterModalComponent from '../../component/FilterModalComponent'
 import ImageBreedComponent from '../../component/ImageBreedComponent'
-import { Button, Container, Jumbotron , Card } from 'react-bootstrap';
+import { Dropdown, Row, Button, Container, Jumbotron , Card } from 'react-bootstrap';
 import ImageModalComponent from '../../component/ImageModalComponent';
 
 
@@ -25,6 +25,13 @@ import ImageModalComponent from '../../component/ImageModalComponent';
             handleUpdateSrcModal(src);
             handleUpdateShowImageModal(true);
         }
+
+        // manejo de propiedades de la lista de imagenes
+        const [maxImageList, setMaxImageList] = useState(5);
+        const handleUpdateMaxImageList = (max) => setMaxImageList(max);
+
+        const [sizeImageList, setSizeImageList] = useState('small');
+        const handleUpdateSizeImageList = (size) => setSizeImageList(size);
 
         // caso de uso
         const breedUseCase = new BreedUseCase();
@@ -104,6 +111,8 @@ import ImageModalComponent from '../../component/ImageModalComponent';
         const InitializateAll = async () => {
             
             setShowFilterModal(false);
+            setMaxImageList(5);
+            setSizeImageList('small');
             const data = await breedUseCase.getListAll();
             
             // asingar imagenes a las razas / async
@@ -129,38 +138,77 @@ import ImageModalComponent from '../../component/ImageModalComponent';
         return (
             <React.Fragment>
             {
-                <Container className="p-3">
+            <Container className="p-3">
                 <Jumbotron>
+                    <FilterModalComponent
+                        breeds = { listBreeds }
+                        showModal = { showFilterModal }
+                        onHideModal = { () => handleUpdateShowFilterModal(false) }
+                        onClearSelection = { () => handleUpdateClearSelection(listBreeds) } 
+                        onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
+                        onChangeSubBreed = { (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
+                        onSelectAll = { (idBreed, status) => handleUpdateSelectAllSubBreeds(listBreeds, idBreed, status) }
+                    />
+
+                    <ImageModalComponent
+                        showModal = { showImageModal }
+                        source = { imageSrcModal }
+                        onHideModal = { () => handleUpdateShowImageModal(false) }
+                    />
+
                     <h1 className="header">Welcome To Dog-Ceo Challenge</h1>
-
-                <Card className="col-lg-12 col-12">
-                    <Card.Body>
-                        <Card.Title>Breed Filters</Card.Title>
-                        <Card.Text> 
-                            You can filter by breeds and / or subbreeds
-                        </Card.Text>
-                        <Button variant="primary" onClick={() => handleUpdateShowFilterModal(true)}>
-                            Select your Filters
-                        </Button>
-                        
-                        <FilterModalComponent
-                            breeds = { listBreeds }
-                            showModal = { showFilterModal }
-                            onHideModal = { () => handleUpdateShowFilterModal(false) }
-                            onClearSelection = { () => handleUpdateClearSelection(listBreeds) } 
-                            onChangeBreed = { (id, status) => hadleUpdateBreeds(listBreeds, id, status) }
-                            onChangeSubBreed = { (idBreed, id, status) => hadleUpdateSubBreeds(listBreeds, idBreed, id, status) }
-                            onSelectAll = { (idBreed, status) => handleUpdateSelectAllSubBreeds(listBreeds, idBreed, status) }
-                        />
-
-                        <ImageModalComponent
-                            showModal = { showImageModal }
-                            source = { imageSrcModal }
-                            onHideModal = { () => handleUpdateShowImageModal(false) }
-                        />
-                    </Card.Body>
-                    </Card>
-
+                    <Row>
+                        {/* tarjeta del boton de filtros */}
+                        <Card className="col-lg-6 col-6">
+                            <Card.Body>
+                            
+                                <Card.Title>Breed Filters</Card.Title>
+                                <Card.Text> 
+                                    You can filter by breeds and / or subbreeds
+                                </Card.Text>
+                                <Button variant="primary" onClick={() => handleUpdateShowFilterModal(true)}>
+                                    Select your Filters
+                                </Button>
+                                
+                                
+                            </Card.Body>
+                        </Card>
+                        {/* tarjeta de las propiedades de la lista de imagenes */}
+                        <Card className="col-lg-6 col-6">
+                            <Card.Body>
+                                <Card.Title>Customize</Card.Title>
+                                <Card.Text> 
+                                    You can customize image list properties
+                                </Card.Text>
+                                <Card.Text>
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                            Size thumbnail - { sizeImageList }
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item onClick={() => handleUpdateSizeImageList('small')}>small</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => handleUpdateSizeImageList('medium')}>medium</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => handleUpdateSizeImageList('large')}>large</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </Card.Text>
+                                <Card.Text>
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                            Max images - {maxImageList}
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item onClick={() => handleUpdateMaxImageList(5)}>5</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => handleUpdateMaxImageList(10)}>10</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => handleUpdateMaxImageList(20)}>20</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => handleUpdateMaxImageList(30)}>30</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Row>
+                    <Row>
                     {
                         listBreeds.map( (element, idx) => 
                             // si es raza sola y esta seleccionada
@@ -170,6 +218,8 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                                     breed = { element.breed }
                                     subbreeds = { element.subbreeds } 
                                     images = { element.images }
+                                    maxImages = { maxImageList }
+                                    sizeImages = { sizeImageList }
                                     onImageClick = { (src) => showImageSelected(src, element.breed, '')}
                                 />
                                 : 
@@ -180,10 +230,13 @@ import ImageModalComponent from '../../component/ImageModalComponent';
                                         breed = { element.breed }
                                         subbreeds = { element.subbreeds.filter(sb => sb.selected) } 
                                         images = { element.images }
+                                        maxImages = { maxImageList }
+                                        sizeImages = { sizeImageList }
                                         onImageClick = { (src, subbreed) => showImageSelected(src, element.breed, subbreed)}
                                 />
                         )
                     }
+                    </Row>
                 </Jumbotron>
             </Container>
             }

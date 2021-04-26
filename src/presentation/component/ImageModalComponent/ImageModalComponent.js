@@ -4,7 +4,6 @@ import { Button, Col, Card, Form, Image, Modal, Row  } from 'react-bootstrap';
 const ImageModalComponent = ({ showModal, onHideModal, source }) => {
     
     const data = source.split(';');
-    console.log(data);
 
     return (
         <React.Fragment>
